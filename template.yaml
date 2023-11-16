@@ -1,0 +1,17 @@
+
+AWSTemplateFormatVersion: '2010-09-09' # Define the version of CloudFormation template
+Transform: AWS::Serverless-2016-10-31 # Declares that this a SAM template
+Resources:
+  GraphQL:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/graphql.handler
+      Runtime: nodejs14.x
+      Timeout: 10
+      MemorySize: 1024 # in Megabytes
+      Events:
+        AnyRequest:
+          Type: Api
+          Properties:
+            Path: /graphql
+            Method: ANY

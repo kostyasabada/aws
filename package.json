@@ -1,0 +1,23 @@
+{
+  "name": "aws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kostyasabada/aws.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kostyasabada/aws/issues"
+  },
+  "homepage": "https://github.com/kostyasabada/aws#readme",
+  "dependencies": {
+    "apollo-server-lambda": "^3.13.0",
+    "graphql": "^16.8.1"
+  }
+}

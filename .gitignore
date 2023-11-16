@@ -1,0 +1,4 @@
+.vscode/
+node_modules/
+cf-template.yaml
+yarn-error.log
