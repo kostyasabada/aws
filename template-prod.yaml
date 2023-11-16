@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  GraphQL:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/graphql.handler
+      Runtime: nodejs14.x
+      Timeout: 2
+      MemorySize: 1024
+      Events:
+        AnyRequest:
+          Type: Api
+          Properties:
+            Path: /graphql
+            Method: ANY
+      Environment:
+        Variables:
+          NODE_ENV: production
+      Policies:
+      - Version: "2012-10-17"
+        Statement:
+        - Sid: DynamoDBGetPutItemPolicy
+          Effect: Allow
+          Action:
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:Scan
+          Resource: !GetAtt GoalTable.Arn
+  GoalTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Goals
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema: 
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput: 
+        ReadCapacityUnits: 25
+        WriteCapacityUnits: 25

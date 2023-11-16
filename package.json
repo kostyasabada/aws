@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sam local start-api --warm-containers EAGER --docker-network graphql-free"
+    "start": "sam local start-api --warm-containers EAGER --docker-network graphql-free",
+    "cf:package": "aws cloudformation package --template-file template-prod.yaml --output-template-file cf-template.yaml --s3-bucket graphql-free-cf-template --region=eu-north-1",
+    "cf:deploy": "aws cloudformation deploy --template-file cf-template.yaml --stack-name graphql-free-prod --capabilities CAPABILITY_IAM --region=eu-north-1"
   },
   "repository": {
     "type": "git",
